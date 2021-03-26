@@ -13,5 +13,10 @@ namespace SurvivalMan{
         public static int Height = 600;
         public static World World = Game.World;
         public static Player Player = Game.Player;
+        public static EntityData EntityData;
+        public static ItemData ItemData;
+        public static bool Debug = false;
+
+        public static void SpawnEntity(float x, float y, Entity entity) => World.SpawnEntity(x, y, entity);
     }
 }

@@ -15,6 +15,8 @@ namespace SurvivalMan
         public OrthographicCamera Camera;
         public World World;
         public Player Player;
+        public EntityData EntityData;
+        public ItemData ItemData;
 
 
         public Game1()
@@ -37,12 +39,17 @@ namespace SurvivalMan
             this.Components.Add(Input);
             base.Initialize();
 
+            EntityData = new EntityData();
+            ItemData = new ItemData();
+            Handler.EntityData = EntityData;
+            Handler.ItemData = ItemData;
+
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Handler.Width, Handler.Height);
             Camera = new OrthographicCamera(viewportAdapter);
-
-            World = new World();
-            World.AddEntity((Player = new Player(Camera)));
-            
+            Player = new Player(Camera);
+            World = new World(Player);
+            Handler.Player = Player;
+            Handler.World = World;
         }
 
         protected override void LoadContent()
@@ -72,12 +79,9 @@ namespace SurvivalMan
                 blendState: BlendState.AlphaBlend,
                 samplerState: SamplerState.PointClamp);
 
-            spriteBatch.FillRectangle(100, 100, 100, 100, Color.Black);
             World.Draw(spriteBatch);
 
             spriteBatch.End();
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

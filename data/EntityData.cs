@@ -1,6 +1,8 @@
 namespace SurvivalMan{
     public class EntityData{
-        public static Entity Tree = new Entity("world/tree", 2);
+        public Tree Tree = (Tree) new Tree().SetScale(4);
+        public Chest Chest = (Chest) new Chest().SetScale(4);
+        public Farm Farm = new Farm();
     }
 
     public enum EntityType{
@@ -8,6 +10,7 @@ namespace SurvivalMan{
         Tree,
         Rock,
         Building,
-        Item
+        Item,
+        Storage
     }
 }

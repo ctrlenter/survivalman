@@ -4,40 +4,37 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 namespace SurvivalMan{
-    public class Entity{
+    public abstract class Entity{
         public float X{get;set;}
         public float Y{get;set;}
         public Texture2D Texture{get;set;}
         public const int DefaultSize = 32;
         public bool Dead = false;
         public int Scale = 1;
+        public bool Solid;
         public EntityType Type;
-        public RectangleF Bounds{
-            get{
-                return new RectangleF(X, Y, DefaultSize * Scale, DefaultSize * Scale);
-            }
-        }
         public InputManager Input => Handler.Input;
 
-
-        public Entity(){
-
+        public Entity(EntityType type){
+            Type = type;
         }
 
-        public Entity(string texId, int scale = 1){
+        public Entity(string texId, EntityType type){
             Texture = Handler.Content.Load<Texture2D>(texId);
-            Scale = scale;
+            Type = type;
         }
 
-        public Entity(float x, float y){
+        public Entity(float x, float y, EntityType type){
             X = x;
             Y = y;
+            Type = type;
         }
 
-        public Entity(float x, float y, string texId){
+        public Entity(float x, float y, string texId, EntityType type){
             X = x;
             Y = y;
             Texture = Handler.Content.Load<Texture2D>(texId);
+            Type = type;
         }
 
         public Entity SetScale(int scale){
@@ -45,18 +42,15 @@ namespace SurvivalMan{
             return this;
         }
 
-        public virtual void Draw(SpriteBatch batch){}
 
-        public virtual void Update(GameTime gameTime){}
+        public abstract void Draw(SpriteBatch batch);
+        public abstract RectangleF GetCollisionBounds();
 
-        public static void SpawnEntity(float x, float y, Entity entity){
-            var ent = new Entity();
-            ent.X = x;
-            ent.Y = y;
-            ent.Texture = entity.Texture;
-            ent.Scale = entity.Scale;
+        public abstract RectangleF GetBounds();
 
-            Handler.World.AddEntity(ent);
-        }
+        public abstract void Update(GameTime gameTime);
+
+        public abstract Entity Copy();
+
     }
 }

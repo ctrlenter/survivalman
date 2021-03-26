@@ -23,5 +23,11 @@ namespace SurvivalMan{
             var item = new Item(Name,Description,Texture);
             return item;
         }
+
+        public ItemEntity SpawnEntity(){
+            var itemEntity = new ItemEntity();
+            itemEntity.Item = this;
+            return itemEntity;
+        }
     }
 }
