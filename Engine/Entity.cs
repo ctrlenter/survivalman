@@ -5,8 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace SurvivalMan{
     public abstract class Entity{
-        public float X{get;set;}
-        public float Y{get;set;}
+        public Vector2 Position;
         public Texture2D Texture{get;set;}
         public const int DefaultSize = 32;
         public bool Dead = false;
@@ -25,14 +24,12 @@ namespace SurvivalMan{
         }
 
         public Entity(float x, float y, EntityType type){
-            X = x;
-            Y = y;
+            Position = new Vector2(x,y);
             Type = type;
         }
 
         public Entity(float x, float y, string texId, EntityType type){
-            X = x;
-            Y = y;
+            Position = new Vector2(x,y);
             Texture = Handler.Content.Load<Texture2D>(texId);
             Type = type;
         }

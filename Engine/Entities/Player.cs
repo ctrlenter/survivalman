@@ -10,14 +10,16 @@ namespace SurvivalMan{
     public class Player : Entity{
         public OrthographicCamera Camera;
         public float Speed = 200;
+        public Vector2 Pos;
         public Player(OrthographicCamera camera) : base(EntityType.Player){
             Camera = camera;
         }
 
-        private void SetPos(){
+        /*private void SetPos(){
             X = (Handler.Width / 2 - GetBounds().Width / 2) + Camera.Position.X;
             Y = (Handler.Height / 2 - GetBounds().Width / 2) + Camera.Position.Y;
         }
+        */
         
         public List<Entity> GetEntitiesInView(){
             var entities = Handler.World.entities.FindAll(r => Camera.BoundingRectangle.Intersects(r.GetBounds()));
@@ -26,8 +28,11 @@ namespace SurvivalMan{
 
         public override void Update(GameTime gameTime)
         {
-            Camera.Move(HandleMovement() * Speed * gameTime.GetElapsedSeconds());
-            SetPos();
+
+            Pos += HandleMovement() * Speed * gameTime.GetElapsedSeconds();
+            
+            //Camera.Move(HandleMovement() * Speed * gameTime.GetElapsedSeconds());
+            //SetPos();
             //Handle collision or sumthin
             
             if(Input.JustPressed(Keys.F)){
@@ -68,9 +73,17 @@ namespace SurvivalMan{
 
         }
 
+        public void MoveX(float amt){
+            
+        }
+
+        public void MoveY(float amt){
+
+        }
+
         public override RectangleF GetBounds()
         {
-            return new RectangleF(X, Y, DefaultSize * Scale, DefaultSize * Scale);
+            return new RectangleF(Pos.X, Pos.Y, DefaultSize * Scale, DefaultSize * Scale);
         }
         public override RectangleF GetCollisionBounds()
         {

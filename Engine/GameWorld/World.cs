@@ -21,8 +21,7 @@ namespace SurvivalMan{
 
         public void SpawnEntity(float x, float y, Entity entity){
             var copy = entity.Copy();
-            copy.X = x;
-            copy.Y = y;
+            copy.Position = new Vector2(x,y);
             AddEntity(copy);
         }
 

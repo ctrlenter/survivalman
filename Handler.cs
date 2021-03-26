@@ -2,9 +2,11 @@ using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended.Collisions;
+using MonoGame.Extended;
 
 namespace SurvivalMan{
-    public class Handler{
+    public static class Handler{
         public static Game1 Game => Game1.Instance;
         public static InputManager Input => Game.Input;
         public static SpriteBatch SpriteBatch => Game.spriteBatch;
@@ -16,7 +18,15 @@ namespace SurvivalMan{
         public static EntityData EntityData;
         public static ItemData ItemData;
         public static bool Debug = false;
+        public static CollisionComponent CollisionComponent;
 
         public static void SpawnEntity(float x, float y, Entity entity) => World.SpawnEntity(x, y, entity);
+    
+
+        public static void CenterOnEntity(this OrthographicCamera camera, Entity entity){
+            
+        }
+    
     }
+
 }

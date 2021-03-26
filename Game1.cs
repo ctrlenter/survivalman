@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.Collisions;
 using MonoGame.Extended.ViewportAdapters;
 
 namespace SurvivalMan
@@ -17,6 +18,7 @@ namespace SurvivalMan
         public Player Player;
         public EntityData EntityData;
         public ItemData ItemData;
+        public CollisionComponent CollisionComponent;
 
 
         public Game1()

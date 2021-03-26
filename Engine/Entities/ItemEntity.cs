@@ -13,8 +13,7 @@ namespace SurvivalMan{
         {
             var itemEnt = new ItemEntity();
             itemEnt.Item = Item;
-            itemEnt.X = X;
-            itemEnt.Y = Y;
+            itemEnt.Position = new Vector2(Position.X, Position.Y);
             itemEnt.Scale = Scale;
             return itemEnt;
         }
@@ -26,7 +25,7 @@ namespace SurvivalMan{
 
         public override RectangleF GetBounds()
         {
-            return new RectangleF(X, Y, DefaultSize * Scale, DefaultSize * Scale );
+            return new RectangleF(Position.X, Position.Y, DefaultSize * Scale, DefaultSize * Scale );
         }
         public override RectangleF GetCollisionBounds()
         {

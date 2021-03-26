@@ -32,12 +32,12 @@ namespace SurvivalMan{
 
         public override RectangleF GetBounds()
         {
-            return new RectangleF(X, Y, Texture.Width * Scale, Texture.Height * Scale);
+            return new RectangleF(Position.X, Position.Y, Texture.Width * Scale, Texture.Height * Scale);
         }
 
         public override RectangleF GetCollisionBounds()
         {
-            return new RectangleF(X+ ((Texture.Width / 2 ) * Scale) + (1 * Scale), Y + (6 * Scale), (Texture.Width / 2 - 2) * Scale, (Texture.Height - 6) * Scale);
+            return new RectangleF(Position.X+ ((Texture.Width / 2 ) * Scale) + (1 * Scale), Position.Y + (6 * Scale), (Texture.Width / 2 - 2) * Scale, (Texture.Height - 6) * Scale);
         }
 
         public override void Update(GameTime gameTime)
